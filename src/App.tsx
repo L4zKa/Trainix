@@ -1,13 +1,15 @@
 import * as React from "react";
 import {
   FluentProvider,
-  webLightTheme,
-  webDarkTheme,
   Label,
   Switch,
   TabList,
   Tab,
   Title2,
+  type BrandVariants,
+  createLightTheme,
+  createDarkTheme,
+  type Theme,
 } from "@fluentui/react-components";
 
 import {
@@ -28,6 +30,36 @@ type View = "workout" | "templates" | "history";
 
 export default function App() {
   const styles = useStyles();
+  const myNewTheme: BrandVariants = {
+    10: "#03020C",
+    20: "#0D1144",
+    30: "#121678",
+    40: "#23169C",
+    50: "#3D14BB",
+    60: "#5B0DD5",
+    70: "#7902EA",
+    80: "#9600F8",
+    90: "#B114FF",
+    100: "#C730FF",
+    110: "#DB47FF",
+    120: "#EC5DFF",
+    130: "#FB73FF",
+    140: "#FF90F9",
+    150: "#FFABF3",
+    160: "#FFC4F1",
+  };
+
+  const myLightTheme: Theme = {
+    ...createLightTheme(myNewTheme),
+  };
+
+  const myDarkTheme: Theme = {
+    ...createDarkTheme(myNewTheme),
+  };
+
+  myDarkTheme.colorBrandForeground1 = myNewTheme[110];
+  myDarkTheme.colorBrandForeground2 = myNewTheme[120];
+
   const [dark, setDark] = React.useState(false);
 
   const [state, setState] = React.useState<AppState>(() => loadState());
@@ -86,6 +118,7 @@ export default function App() {
           : s
       ),
     }));
+    setActiveSessionId("");
   };
 
   const addSet = (exerciseId: string, weightKg: number, reps: number) => {
@@ -205,7 +238,7 @@ export default function App() {
 
   return (
     <FluentProvider
-      theme={dark ? webDarkTheme : webLightTheme}
+      theme={dark ? myDarkTheme : myLightTheme}
       style={{ height: "100vh", padding: "10px" }}
       /* className={styles.page} */
     >

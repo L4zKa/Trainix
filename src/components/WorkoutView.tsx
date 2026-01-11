@@ -73,8 +73,10 @@ export function WorkoutView(props: {
               {formatTime(props.activeSession.startedAt)}
             </Text>
           </div>
+
           <Divider />
           <br />
+
           {props.activeSession.exercises.map((ex) => (
             <ExerciseLogger
               key={ex.id}
@@ -82,10 +84,11 @@ export function WorkoutView(props: {
               disabled={!!props.activeSession?.endedAt}
               onAddSet={(w, r) => props.addSet(ex.id, w, r)}
               onDeleteSet={(setId) => props.deleteSet(ex.id, setId)}
+              template={props.templates.find(
+                (x) => x.name == props.activeSession?.templateName
+              )}
             />
           ))}
-          <Divider />
-          <br />
           <Button
             onClick={props.endSession}
             disabled={!props.activeSession || !!props.activeSession.endedAt}
