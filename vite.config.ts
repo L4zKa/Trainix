@@ -23,7 +23,7 @@ export default defineConfig({
             type: "image/png",
           },
           {
-            src: "/Trainix/pwa-512x512.png",
+            src: "/Trainix/text.png",
             sizes: "512x512",
             type: "image/png",
           },

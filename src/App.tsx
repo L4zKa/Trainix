@@ -209,7 +209,7 @@ export default function App() {
       <div className={styles.shell}>
         {/* Header */}
         <div className={styles.topbar}>
-          <Title2>Workout Tracker</Title2>
+          <Title2 style={{ fontFamily: "math" }}>Trainix</Title2>
           <div className={styles.row}>
             <DarkmodeSwitch
               checked={state.isDarkMode}
