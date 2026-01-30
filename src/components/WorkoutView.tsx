@@ -36,7 +36,7 @@ export function WorkoutView(props: {
                   ?.name ?? ""
               }
               defaultSelectedOptions={[props.activeTemplateId]}
-              onOptionSelect={(ev, data) => {
+              onOptionSelect={(_, data) => {
                 props.setActiveTemplateId(data.optionValue ?? "");
               }}
             >
@@ -85,7 +85,7 @@ export function WorkoutView(props: {
               onAddSet={(w, r) => props.addSet(ex.id, w, r)}
               onDeleteSet={(setId) => props.deleteSet(ex.id, setId)}
               template={props.templates.find(
-                (x) => x.name == props.activeSession?.templateName
+                (x) => x.name == props.activeSession?.templateName,
               )}
             />
           ))}

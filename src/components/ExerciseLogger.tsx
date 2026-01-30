@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import type { Exercise, TemplateExercise, WorkoutTemplate } from "../storage";
 import {
   formatTime,
@@ -26,7 +26,7 @@ export default function ExerciseLogger(props: {
     props.template?.exercises.find((x) => x.name == props.exercise.name);
   const [weight, setWeight] = useState("");
   const [reps, setReps] = useState<string>(
-    templateExercise?.repsGoal.toString() ?? ""
+    templateExercise?.repsGoal.toString() ?? "",
   );
 
   const canAdd =
