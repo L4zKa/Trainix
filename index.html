@@ -1,12 +1,53 @@
 <!doctype html>
-<html lang="en">
+<html lang="de">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/text.png" />
+    <link rel="icon" type="image/png" href="/TrainixLogo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Trainix</title>
+
+    <style>
+      html.dark body {
+        background: #292929;
+      }
+    </style>
+
+    <script>
+      (function () {
+        const KEY = "workout-tracker.v1";
+
+        function applyTheme() {
+          try {
+            const raw = localStorage.getItem(KEY);
+            const data = raw ? JSON.parse(raw) : null;
+            const isDark = data?.isDarkMode === true;
+
+            document.documentElement.classList.toggle("dark", isDark);
+          } catch {}
+        }
+
+        applyTheme();
+
+        const _setItem = localStorage.setItem;
+        localStorage.setItem = function (k, v) {
+          _setItem.call(this, k, v);
+          if (k === KEY) applyTheme();
+        };
+
+        const _removeItem = localStorage.removeItem;
+        localStorage.removeItem = function (k) {
+          _removeItem.call(this, k);
+          if (k === KEY) applyTheme();
+        };
+
+        window.addEventListener("storage", (e) => {
+          if (e.key === KEY) applyTheme();
+        });
+      })();
+    </script>
   </head>
-  <body style="margin: 0px; height: 100vh">
+
+  <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

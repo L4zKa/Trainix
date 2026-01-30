@@ -7,5 +7,5 @@ if (!el) throw new Error("Missing #root");
 createRoot(el).render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>
+  </React.StrictMode>,
 );

@@ -14,24 +14,13 @@ export default defineConfig({
         start_url: "/Trainix/",
         scope: "/Trainix/",
         display: "standalone",
-        theme_color: "#0b0b0b",
-        background_color: "#0b0b0b",
+        theme_color: "#9600F8",
+        background_color: "#0b0b0b00",
         icons: [
           {
-            src: "/Trainix/pwa-192x192.png",
-            sizes: "192x192",
-            type: "image/png",
-          },
-          {
-            src: "/Trainix/text.png",
+            src: "/Trainix/TrainixLogo.png",
             sizes: "512x512",
             type: "image/png",
-          },
-          {
-            src: "/Trainix/pwa-512x512.png",
-            sizes: "512x512",
-            type: "image/png",
-            purpose: "any maskable",
           },
         ],
       },

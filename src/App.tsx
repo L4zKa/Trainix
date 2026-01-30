@@ -202,10 +202,7 @@ export default function App() {
   };
 
   return (
-    <FluentProvider
-      theme={state.isDarkMode ? myDarkTheme : myLightTheme}
-      style={{ height: "97.8vh", padding: "10px", overflow: "auto" }}
-    >
+    <FluentProvider theme={state.isDarkMode ? myDarkTheme : myLightTheme}>
       <div className={styles.shell}>
         {/* Header */}
         <div className={styles.topbar}>
