@@ -4,6 +4,7 @@ export type ExerciseSet = {
   id: Id;
   weightKg: number;
   reps: number;
+  repsGoal: number;
   createdAt: string; // ISO
 };
 
@@ -11,6 +12,7 @@ export type Exercise = {
   id: Id;
   name: string;
   sets: ExerciseSet[];
+  setGoal: number;
 };
 
 export type TemplateExercise = {
@@ -84,26 +86,26 @@ export function defaultState(): AppState {
           {
             id: newId(),
             name: "Bench Press",
-            setGoal: 0,
-            repsGoal: 0,
+            setGoal: 3,
+            repsGoal: 15,
           },
           {
             id: newId(),
             name: "Incline DB Press",
-            setGoal: 0,
-            repsGoal: 0,
+            setGoal: 3,
+            repsGoal: 15,
           },
           {
             id: newId(),
             name: "Shoulder Press",
-            setGoal: 0,
-            repsGoal: 0,
+            setGoal: 3,
+            repsGoal: 15,
           },
           {
             id: newId(),
             name: "Triceps Pushdown",
-            setGoal: 0,
-            repsGoal: 0,
+            setGoal: 3,
+            repsGoal: 15,
           },
         ],
       },
@@ -114,26 +116,26 @@ export function defaultState(): AppState {
           {
             id: newId(),
             name: "Pull-Ups",
-            setGoal: 0,
-            repsGoal: 0,
+            setGoal: 3,
+            repsGoal: 15,
           },
           {
             id: newId(),
             name: "Barbell Row",
-            setGoal: 0,
-            repsGoal: 0,
+            setGoal: 3,
+            repsGoal: 15,
           },
           {
             id: newId(),
             name: "Lat Pulldown",
-            setGoal: 0,
-            repsGoal: 0,
+            setGoal: 3,
+            repsGoal: 15,
           },
           {
             id: newId(),
             name: "Biceps Curl",
-            setGoal: 0,
-            repsGoal: 0,
+            setGoal: 3,
+            repsGoal: 15,
           },
         ],
       },
@@ -144,26 +146,26 @@ export function defaultState(): AppState {
           {
             id: newId(),
             name: "Squat",
-            setGoal: 0,
-            repsGoal: 0,
+            setGoal: 3,
+            repsGoal: 15,
           },
           {
             id: newId(),
             name: "Romanian Deadlift",
-            setGoal: 0,
-            repsGoal: 0,
+            setGoal: 3,
+            repsGoal: 15,
           },
           {
             id: newId(),
             name: "Leg Press",
-            setGoal: 0,
-            repsGoal: 0,
+            setGoal: 3,
+            repsGoal: 15,
           },
           {
             id: newId(),
             name: "Calf Raise",
-            setGoal: 0,
-            repsGoal: 0,
+            setGoal: 3,
+            repsGoal: 15,
           },
         ],
       },

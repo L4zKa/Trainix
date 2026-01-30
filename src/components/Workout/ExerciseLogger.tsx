@@ -29,15 +29,13 @@ export default function ExerciseLogger(props: {
   const templateExercise: TemplateExercise | undefined =
     props.template?.exercises.find((x) => x.name == props.exercise.name);
   const [weight, setWeight] = useState("");
-  const [reps, setReps] = useState<string>(
-    templateExercise?.repsGoal.toString() ?? "",
-  );
+  const [reps, setReps] = useState<string>("0");
 
   const canAdd =
     !props.disabled && isFiniteNumber(weight) && isFiniteNumber(reps);
 
   return (
-    <div>
+    <>
       <div
         style={{
           display: "flex",
@@ -47,8 +45,11 @@ export default function ExerciseLogger(props: {
       >
         <Subtitle2>{props.exercise.name}</Subtitle2>
         <Text className={styles.tiny}>
-          {props.exercise.sets.length} / {templateExercise?.setGoal}
-          sets
+          {props.exercise.sets.length} / {templateExercise?.setGoal} sets{" "}
+          {props.exercise.sets.reduce((sum, item) => sum + item.reps, 0)} /{" "}
+          {((templateExercise?.repsGoal as number) ?? 0) *
+            ((templateExercise?.setGoal as number) ?? 0)}{" "}
+          reps
         </Text>
       </div>
       {props.exercise.sets.length > 0 && (
@@ -76,18 +77,19 @@ export default function ExerciseLogger(props: {
         </>
       )}
       <div style={{ display: "flex", alignItems: "flex-end" }}>
-        <Field label={"kg"} style={{ maxWidth: "15%" }}>
+        <Field label={"kg"} style={{ maxWidth: "35%" }}>
           <Input
-            style={{ maxWidth: "25%" }}
+            style={{ maxWidth: "40%" }}
             type="number"
             value={weight}
             onChange={(_, d) => setWeight(d.value)}
             inputMode="decimal"
           />
         </Field>
-        <Field label={"reps"} style={{ maxWidth: "15%" }}>
+        <Field label={"reps"} style={{ maxWidth: "35%" }}>
           <Input
-            style={{ maxWidth: "25%" }}
+            contentAfter={`/${templateExercise?.repsGoal}`}
+            style={{ maxWidth: "40%" }}
             type="number"
             value={reps}
             onChange={(_, d) => setReps(d.value)}
@@ -105,6 +107,6 @@ export default function ExerciseLogger(props: {
       <br />
       <Divider />
       <br />
-    </div>
+    </>
   );
 }

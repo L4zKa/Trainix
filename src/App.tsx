@@ -65,6 +65,7 @@ export default function App() {
         id: newId(),
         name: e.name,
         sets: [],
+        setGoal: 0,
       })),
     };
 
@@ -92,6 +93,7 @@ export default function App() {
       id: newId(),
       weightKg: Number.isFinite(weightKg) ? weightKg : 0,
       reps: Number.isFinite(reps) ? reps : 0,
+      repsGoal: 0,
       createdAt: new Date().toISOString(),
     };
 

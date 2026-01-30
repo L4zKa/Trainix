@@ -1,46 +1,38 @@
-import { Text, Button } from "@fluentui/react-components";
-import {
-  formatDateTime,
-  formatTime,
-  useStyles,
-} from "../../helpers/globalFunctions";
+import { Text } from "@fluentui/react-components";
+import { useStyles } from "../../helpers/globalFunctions";
 import type { WorkoutSession } from "../../storage";
+import { HistoryEntrys } from "./HistoryEntrys";
+import { useState } from "react";
+import { ShowSessionDialog } from "./ShowSessionDialog";
 
 export function HistoryView(props: {
   sessions: WorkoutSession[];
   setActiveSessionId(id: string): void;
 }) {
   const styles = useStyles();
-
   const sessions = props.sessions;
+
+  const [selectedSessionObj, setSelectedSessionObj] =
+    useState<WorkoutSession>();
 
   return (
     <div className={styles.box}>
+      <ShowSessionDialog
+        session={selectedSessionObj}
+        closeDialog={() => setSelectedSessionObj(undefined)}
+      />
       {sessions.length === 0 ? (
         <Text className={styles.tiny}>No sessions yet.</Text>
       ) : (
-        sessions.slice(0, 20).map((s) => {
-          const totalSets = s.exercises.reduce(
-            (acc, ex) => acc + ex.sets.length,
-            0,
-          );
-          return (
-            <div key={s.id}>
-              <div className={styles.exerciseRow}>
-                <Text weight="semibold">{s.templateName}</Text>
-                <Text className={styles.tiny}>{totalSets} sets</Text>
-              </div>
-
-              <Text className={styles.tiny}>
-                {formatDateTime(s.startedAt)}
-                {s.endedAt ? ` → ${formatTime(s.endedAt)}` : ""}
-              </Text>
-              <Button onClick={() => props.setActiveSessionId(s.id)}>
-                Open
-              </Button>
-            </div>
-          );
-        })
+        <HistoryEntrys
+          AllSessions={sessions}
+          openSession={(sessionId: string) => {
+            const selectedSessionObject = sessions.find(
+              (x) => x.id == sessionId,
+            );
+            setSelectedSessionObj(selectedSessionObject);
+          }}
+        />
       )}
     </div>
   );

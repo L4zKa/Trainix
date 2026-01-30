@@ -25,7 +25,7 @@ type IEditTemplateDialogProps = {
     templateId: string,
     name: string,
     setGoal: number,
-    repsGoal: number
+    repsGoal: number,
   ) => void;
   onRemoveExercise: (exerciseId: string) => void;
 };
@@ -161,7 +161,7 @@ export function EditTemplateDialog(props: IEditTemplateDialogProps) {
                       template?.id ?? "",
                       e.name,
                       e.setGoal,
-                      e.repsGoal
+                      e.repsGoal,
                     );
                   }
                 });
